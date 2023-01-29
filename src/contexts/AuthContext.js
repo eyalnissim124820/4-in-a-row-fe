@@ -10,9 +10,14 @@ const  AuthContext = ({children})=>{
   const handleCurrentUser = (value)=>{
     setCurrentUser(value)
   }
+
+  const values = { 
+    currentUser,
+    handleCurrentUser
+  }
   
   return (
-    <Context.Provider value={{currentUser, handleCurrentUser}}>
+    <Context.Provider value={values}>
       {children}
     </Context.Provider>
   )
