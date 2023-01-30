@@ -1,21 +1,42 @@
-import { useNavigate } from "react-router-dom"
-import LogoutButton from "../../components/buttons/logoutBtn/LogoutButton"
-import useAuthContext from "../../hooks/useAuthContext"
-
-const HomePage = () =>{
-
-  const {logout} = useAuthContext()
-  const navigate = useNavigate()
-  const handleLogoutClick = () =>{
+import { useNavigate } from "react-router-dom";
+import LogoutButton from "../../components/buttons/logoutBtn/LogoutButton";
+import useAuthContext from "../../hooks/useAuthContext";
+import logo from "../../attachments/favicon_io (4)/4inARow 1.svg";
+import "./HomePage.css";
+import JoinGameButton from "../../components/buttons/joinGameBtn/JoinGameButton";
+import CreateGameButton from "../../components/buttons/createGameBtn/CreateGameButton";
+const HomePage = () => {
+  const { logout , currentUser} = useAuthContext();
+  const navigate = useNavigate();
+  const handleLogoutClick = () => {
     const res = logout();
-    if(res.logout)
-    navigate('/')
-  }
+    if (res.logout) navigate("/");
+  };
+  const handleCreateButtonClick = () => {
+    console.log("creating game ...");
+    
 
+  };
+  const handleJoinButtonClick = () => {
+    console.log("joining game ...");
+  };
   return (
     <div className="homePage-page">
-      <LogoutButton clickHandler={handleLogoutClick}/>
+      <div className="homePage-header">
+        <img id="" src={logo} alt="logo" />
+        <h3>How would you like to continue?</h3>
+      </div>
+      <div className="homePage-body">
+        <div className="homePage-body_buttons-container">
+          <CreateGameButton clickHandler={handleCreateButtonClick} />
+          <JoinGameButton clickHandler={handleJoinButtonClick} />
+        </div>
+      </div>
+      <div className="homePage-footer">
+        <LogoutButton clickHandler={handleLogoutClick} />
+        <p>Log out</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 export default HomePage;
