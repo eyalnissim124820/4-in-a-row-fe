@@ -42,9 +42,23 @@ const AppContext = ({ children }) => {
     }
   };
 
+  const createMatch = (userId) =>{
+    try{
+      const roomId = axios.post('http://localhost:8080', userId)
+      return roomId
+    }catch(error){
+      console.log(error)
+    }
+  }
+  const joinMatch = (userId, roomId) => {
+
+  }
+
   const values ={
     addMatchScore,
-    getScoreHistory
+    getScoreHistory,
+    createMatch,
+    joinMatch
   }
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };
