@@ -10,8 +10,8 @@ export default function CreateGamePage() {
 
   useEffect(() => {
     const url = new URLSearchParams(window.location.search);
-    const room_id = url.get('id');
-    setGameRoom(room_id)
+    const room_pin = url.get('pin');
+    setGameRoom(room_pin)
   }, [])
 
   return (
