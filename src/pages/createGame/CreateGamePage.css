@@ -1,0 +1,98 @@
+.createGamePage {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#smallLogo {
+    height: 100px;
+}
+
+.gameCode-container {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 35%;
+}
+
+.gameCode-container h6 {
+    font-size: 26px;
+    font-weight: 100;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.gameCode-container p {
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+    background-color: #3475DA;
+    color: white;
+    border-radius: 10px;
+    margin-top: 8px;
+    padding: 0px 35px;
+}
+
+.loadingGame-container {
+    height: 65%;
+    width: 100%;
+    border-bottom: #3475DA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15%;                           
+}
+
+.loadingGame-container p {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.loadingCoins {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#coin_y {
+    animation: coinAnimation_y 2s ease-in-out infinite;
+}
+
+#coin_r {
+    animation: coinAnimation_r 2s ease-in-out infinite;
+}
+
+
+@keyframes coinAnimation_y {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes coinAnimation_r {
+    0% {
+        transform: scale(0.3);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.3);
+    }
+}
