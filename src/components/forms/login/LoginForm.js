@@ -1,12 +1,15 @@
 import { useState } from "react"
-import LogintButtonContainer from "../../buttons/loginBtn/LoginButtonContainer"
+import LoginButton from '../../buttons/loginBtn'
 
 const LoginForm = () =>{
   const [loginInfo, setLoginInfo] = useState(null) // is set from inputs
 
+  const handleLoginClick = () =>{
+    //login function on loginIndo
+  }
   return (
     <form>
-      <LogintButtonContainer loginInfo={loginInfo}/>
+      <LoginButton clickHandler={handleLoginClick}/>
     </form>
   )
 }

@@ -1,7 +1,9 @@
 const SignupButton = ({clickHandler}) =>{
 
   return(
-    <button onClick={clickHandler}>Sign Up</button>
+    <div className="">
+      <button onClick={clickHandler}>Sign Up</button>
+    </div>
   )
 }
 export default SignupButton

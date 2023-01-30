@@ -1,7 +1,8 @@
-const LoginButton = ( {clickHandler}) => {
-
+const LoginButton = ({ clickHandler }) => {
   return (
-    <button onClick={clickHandler}>Log in</button>
-  )
-}
+    <div className="">
+      <button onClick={clickHandler}>Log in</button>
+    </div>
+  );
+};
 export default LoginButton;

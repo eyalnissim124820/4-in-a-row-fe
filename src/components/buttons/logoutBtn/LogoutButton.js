@@ -1,7 +1,10 @@
 const LogoutButton = ({clickHandler})=>{
   
+  
   return(
-    <button onClick={clickHandler}>Log out</button>
+    <div className="">
+      <button onClick={clickHandler}>Log out</button>
+    </div>
   )
 }
 export default LogoutButton;
