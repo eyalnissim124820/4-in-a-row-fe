@@ -22,6 +22,7 @@ function App() {
         <Route path='/homePage' element={<HomePage />} />
         <Route path='/gamePage' element={<GamePage />} />
         <Route path='/scoresPage' element={<ScoresPage />} />
+        <Route path='*' element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   );
