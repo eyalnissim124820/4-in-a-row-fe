@@ -28,7 +28,7 @@ const AuthContext = ({ children }) => {
   //‘users/login’ [POST]
   const login = async (loginInfo) => {
     try {
-      const res = await axios.post('http://localhost:8080', loginInfo)
+      const res = await axios.post('http://localhost:8080/users/login', loginInfo)
       return res;
     } catch (error) {
       console.log(error);
