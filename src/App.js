@@ -8,14 +8,14 @@ function App() {
   
   return (
     <BrowserRouter>    
-      <Routes>
-        <Route path='/loginPage' />
-        <Route path='/signupPage' />
-        <Route path='/homePage' />
-        <Route path='/gamePage' />
-        <Route path='/scoresPage' />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path='/loginPage' />
+      <Route path='/signupPage' />
+      <Route path='/homePage' />
+      <Route path='/gamePage' />
+      <Route path='/scoresPage' />
+    </Routes>
+  </BrowserRouter>
   );
 }
 
