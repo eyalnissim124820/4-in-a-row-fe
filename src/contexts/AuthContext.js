@@ -7,6 +7,7 @@ const AuthContext = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(() => {
     return JSON.parse(localStorage.getItem("currentUser") || null);
   });
+
   const [authError, setAuthError] = useState(null)
   const handleCurrentUser = (value) => {
     setCurrentUser(value);
@@ -18,15 +19,16 @@ const AuthContext = ({ children }) => {
   //users/signup’ [POST]
   const signup = async (signupInfo) => {
     try {
-    } catch (error) {
-      const res = await axios.post('http://localhost:8080', signupInfo);
+      const res = await axios.post('http://localhost:8080/users/signup', signupInfo);
       return res;
+    } catch (error) {
+    
     }
   };
   //‘users/login’ [POST]
   const login = async (loginInfo) => {
     try {
-      const res = await axios.post('http://localhost:8080', loginInfo)
+      const res = await axios.post('http://localhost:8080/users/login', loginInfo)
       return res;
     } catch (error) {
       console.log(error);
