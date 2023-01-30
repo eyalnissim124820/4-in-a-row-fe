@@ -23,6 +23,7 @@ const HomePage = () => {
     // if(roomId){
     //   navigate(`/CreateGamePage/?userId=${currentUser.id}&&roomId=${tableInfo}`);
     // }
+    
     navigate(`/CreateGamePage/?userId=${currentUser?.id}&&roomId=${1234}`);
   };
   const handleJoinButtonClick = () => {
