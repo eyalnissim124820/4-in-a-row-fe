@@ -10,7 +10,7 @@ export default function CreateGamePage() {
 
   useEffect(() => {
     const url = new URLSearchParams(window.location.search);
-    const room_pin = url.get('pin');
+    const room_pin = url.get('roomId');
     setGameRoom(room_pin)
   }, [])
 
@@ -19,7 +19,7 @@ export default function CreateGamePage() {
       <div className='gameCode-container'>
         <img id='smallLogo' src={logo} alt='logo' />
         <h6>Game Code</h6>
-        <p>1146</p>
+        <p>{gameRoom}</p>
       </div>
       <div className='loadingGame-container'>
         <p>Waiting for the other player...</p>

@@ -9,7 +9,7 @@ export default function JoinGamePage() {
       <div className='gameCode-container'>
         <img id='smallLogo' src={logo} alt='logo' />
         <h6>Enter Game Pin</h6>
-        <input id='enterPin' type='text' maxlength="4" />
+        <input id='enterPin' type='text' maxLength="4" />
       </div>
       <div className='loadingGame-container'>
         <div className='loadingCoins'>
