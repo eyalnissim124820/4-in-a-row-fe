@@ -32,8 +32,20 @@ const AuthContext = ({ children }) => {
       return res;
     } catch (error) {
       console.log(error);
+      handleAuthError(error.response.data)
     }
   };
+
+  const logout = ()=>{
+    try{
+      handleCurrentUser(null);
+      localStorage.clear('currentUser')
+      return {logout: true }
+    }catch(error){
+      console.log(error)
+      handleAuthError(error)
+    }
+  }
 
   
 
@@ -43,6 +55,7 @@ const AuthContext = ({ children }) => {
     handleCurrentUser,
     signup,
     login,
+    logout,
     handleAuthError
   };
 
