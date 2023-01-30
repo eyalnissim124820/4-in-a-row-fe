@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SignupButton from '../../buttons/signupBtn/SignupButton'
-
 import './SignupForm.css'
+import useAuthContext from '../../../hooks/useAuthContext'
 
 const SignupForm = () => {
-  // set form inputs
+  const navigate = useNavigate()
+  const {signup} = useAuthContext()
   const [signUpInfo, setSignUpInfo] = useState({
     nick_name: '',
     email: '',
@@ -16,10 +18,14 @@ const SignupForm = () => {
     setSignUpInfo({ ...signUpInfo, [e.target.id]: e.target.value })
   }
 
-  const handleSignupClick = (e) => {
-    //signup function on signup info 
+  const handleSignupClick = async (e) => {
+    console.log("click")
     e.preventDefault();
-    console.log(signUpInfo);
+    const res = await signup(signUpInfo);
+    if(res){
+      console.log(res.data);
+      navigate('/loginPage')
+    }
   }
 
   return (
