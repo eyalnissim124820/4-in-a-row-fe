@@ -10,21 +10,26 @@ form div {
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 80%;
 }
 
 input {
     height: 30px;
     border-radius: 12px;
     border: 1px solid #3F3F3F;
+    padding-left: 10px;
 }
+
 
 label {
     background-color: white;
     width: fit-content;
+    height: min-content;
     left: 13px;
     position: absolute;
-    top: -14px;
-    padding: 2.5%;
+    top: -10px;
+    padding: 0px 3px;
+    font-weight: 300;
 }
 
 button {
@@ -33,4 +38,13 @@ button {
     border-radius: 12px;
     color: #FFFFFF;
     padding: 7px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #255299;
+}
+
+button:active {
+    background: #183562;
 }

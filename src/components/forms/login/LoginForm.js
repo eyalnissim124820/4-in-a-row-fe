@@ -4,8 +4,8 @@ import './LoginForm.css'
 
 const LoginForm = () => {
   const [loginInfo, setLoginInfo] = useState({
-    email: null,
-    password: null
+    email: '',
+    password: ''
   })
   // is set from inputs
 

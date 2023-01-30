@@ -1,5 +1,5 @@
 import './App.css';
-import LoginForm from './components/forms/login/LoginForm';
+import SignupForm from './components/forms/signup/SignupForm';
 import useAuthContext from './hooks/useAuthContext';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
 
   return (
     // <div>hello</div>
-    <LoginForm />
+    <SignupForm />
   );
 }
 
