@@ -1,7 +1,7 @@
 import './App.css';
-import SignupForm from './components/forms/signup/SignupForm';
-import useAuthContext from './hooks/useAuthContext';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import useAuthContext from './hooks/useAuthContext';
 import LoginPage from './pages/loginPage/LoginPage';
 import SignUpPage from './pages/signUpPage/SignUpPage';
 import HomePage from './pages/home/HomePage';
