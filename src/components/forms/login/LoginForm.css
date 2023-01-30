@@ -13,6 +13,10 @@ form div {
     width: 80%;
 }
 
+.login-form h1{
+    font-weight: 100;
+}
+
 input {
     height: 30px;
     border-radius: 12px;
