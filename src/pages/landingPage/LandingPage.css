@@ -23,11 +23,11 @@
 #logo {
     margin-top: 10%;
     animation: drop 1.2s ease-in 1;
-
 }
 
 .welcome-container {
     animation: push 1.7s ease-in 1;
+    user-select: none;
 }
 
 
