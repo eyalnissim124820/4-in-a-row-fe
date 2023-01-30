@@ -7,8 +7,7 @@ function App() {
   const { currentUser } = useAuthContext()
 
   return (
-    // <div>hello</div>
-    <SignupForm />
+    <div>hello</div>
   );
 }
 
