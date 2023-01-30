@@ -48,7 +48,7 @@ const SignupForm = () => {
         <input id="repassword" value={signUpInfo.repassword} onChange={handleChange} type='password' name="repassword" />
       </div>
       <SignupButton clickHandler={handleSignupClick} />
-      <small>Alrady have an account? Log in here</small>
+      <small onClick={(()=>{navigate('/loginPage')})}>Alrady have an account? Log in here</small>
     </form>
   )
 }

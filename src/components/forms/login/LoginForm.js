@@ -41,7 +41,7 @@ const LoginForm = () => {
         <input id="password" value={loginInfo.password} onChange={handleChange} type='password' name="password" />
       </div>
       <LoginButton clickHandler={handleLoginClick} />
-      <small>Does not have an account? sign up here</small>
+      <small onClick={()=>{navigate('/signupPage')}}>Does not have an account? sign up here</small>
     </form>
   )
 }
