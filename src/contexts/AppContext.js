@@ -42,6 +42,10 @@ const AppContext = ({ children }) => {
     }
   };
 
-  return <Context.Provider>{children}</Context.Provider>;
+  const values ={
+    addMatchScore,
+    getScoreHistory
+  }
+  return <Context.Provider value={values}>{children}</Context.Provider>;
 };
 export default AppContext;
