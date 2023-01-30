@@ -1,15 +1,36 @@
 import { useState } from "react"
-import LoginButton from '../../buttons/loginBtn'
+import LoginButton from '../../buttons/loginBtn/LoginButton'
+import './LoginForm.css'
 
-const LoginForm = () =>{
-  const [loginInfo, setLoginInfo] = useState(null) // is set from inputs
+const LoginForm = () => {
+  const [loginInfo, setLoginInfo] = useState({
+    email: null,
+    password: null
+  })
+  // is set from inputs
 
-  const handleLoginClick = () =>{
-    //login function on loginIndo
+  const handleChange = (e) => {
+    setLoginInfo({ ...loginInfo, [e.target.id]: e.target.value })
   }
+
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    //login function on loginInfo
+    console.log(loginInfo);
+  }
+
   return (
-    <form>
-      <LoginButton clickHandler={handleLoginClick}/>
+    <form className="login-form">
+      <h1>Login</h1>
+      <div>
+        <label>Email</label>
+        <input id="email" value={loginInfo.email} onChange={handleChange} type='email' name="email" />
+      </div>
+      <div>
+        <label>Password</label>
+        <input id="password" value={loginInfo.password} onChange={handleChange} type='password' name="password" />
+      </div>
+      <LoginButton clickHandler={handleLoginClick} />
     </form>
   )
 }
