@@ -16,6 +16,7 @@ const checkWin = ({ matrix, playerNumber }) => {
         matrix[i + 1][j] === playerNumber &&
         matrix[i + 2][j] === playerNumber &&
         matrix[i + 3][j] === playerNumber
+
       ) {
         return `win`;
       }
@@ -26,6 +27,7 @@ const checkWin = ({ matrix, playerNumber }) => {
         matrix[i - 1][j + 1] === playerNumber &&
         matrix[i - 2][j + 2] === playerNumber &&
         matrix[i - 3][j + 3] === playerNumber
+
       ) {
         return `win`;
       }
@@ -43,3 +45,4 @@ const checkWin = ({ matrix, playerNumber }) => {
   }
   return `not win`;
 };
+
