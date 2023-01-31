@@ -3,9 +3,23 @@
   font-weight: 275;
 }
 
+#scores-back-button {
+  background-color: white;
+  color: rgba(63, 63, 63, 1);
+  font-weight: 700;
+  margin-top: 20px;
+  margin-left: 25px;
+}
+
+#scores-upper-page {
+  display: flex;
+  justify-content: center;
+}
+
 #scores-logo {
   height: 100px;
   width: 100px;
+  margin-bottom: 30px;
 }
 
 #scores-headline {
