@@ -10,7 +10,7 @@ const matrix = [
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0]]
 
-export default function Board({ setModal }) {
+export default function Board({ setModal, setPlayerTurn, playerTurn }) {
 
     const [currentUser, setCurrentUser] = useState('host');
 
@@ -70,13 +70,13 @@ export default function Board({ setModal }) {
             playerNumber = 2;
         }
         const res = await checkWin(gameMatrix, playerNumber)
-        if (res){
+        if (res) {
             setModal(true)
         }
     }
 
     return (
-        <div className='board'>
+        <div className='board' id={`${playerTurn ? '' : 'notTurn'}`}>
             <table>
                 {
                     gameMatrix[0]?.map((column, i) => (
@@ -89,6 +89,7 @@ export default function Board({ setModal }) {
                                             newMatrix[j][slot] = currentUser === 'host' ? 1 : 2;
                                             setGameMatrix(newMatrix)
                                             handleClick()
+                                            setPlayerTurn(!playerTurn)
                                             return;
                                         }
                                     }

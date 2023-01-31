@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 export default function GamePage() {
 
   const [modal, setModal] = useState(false);
+  const [playerTurn, setPlayerTurn] = useState(false);
+
   const navigate = useNavigate();
 
 
@@ -15,8 +17,7 @@ export default function GamePage() {
     <div className="gamePage-page">
       <div className="gamePage-header"></div>
       <div className="gamePage-body">
-        <Board setModal={setModal} />
-
+        <Board setModal={setModal} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} />
       </div>
       <div className="gamePage-footer">
         {modal ? (

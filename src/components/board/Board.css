@@ -1,3 +1,7 @@
+#notTurn {
+    pointer-events: none;
+}
+
 .board {
     position: relative;
     width: 390px;
@@ -53,19 +57,24 @@
     0% {
         transform: translateY(-500px);
     }
-    65%{
+
+    65% {
         transform: translateY(0px);
     }
+
     75% {
         transform: translateY(-40px);
     }
+
     90% {
         transform: translateY(0px);
     }
+
     95% {
         transform: translateY(-20px);
     }
-    100%{
+
+    100% {
         transform: translateY(0px);
     }
 }
