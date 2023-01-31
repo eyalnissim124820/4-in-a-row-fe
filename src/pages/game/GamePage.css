@@ -29,3 +29,37 @@
     flex-direction: column;
     align-items: center;
 }
+
+.modal-buttons-container{
+    display: flex;
+    flex-direction: column;  
+    margin-top: 10px; 
+}
+.modal-buttons-container button{
+    margin: 9px;
+    width: 123px;
+    font-weight: 100;
+    font-size: 1em;
+    padding: 2px;
+    border-radius: 8px;
+}
+
+.modal-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-headers-container{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 53px;
+}
+
+.modal-headers-container h1{
+    margin: 0px;
+}
+
+
