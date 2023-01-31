@@ -13,9 +13,6 @@ export default function ScoresPage() {
   ];
   return (
     <div id="scores-page">
-      <div>
-        <button id="scores-back-button"> &lt; Go Back</button>
-      </div>
       <div id="scores-upper-page">
         <img id="scores-logo" src={logo} alt="logo"></img>
       </div>
