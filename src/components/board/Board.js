@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
 import './Board.css'
-import Modal from '../modal/Modal';
-import redCoin from '../../attachments/boardTools/Coin-red.svg'
-
 
 const matrix = [
     [0, 0, 0, 0, 2, 1],
@@ -16,8 +13,6 @@ const matrix = [
 export default function Board() {
 
     const [currentUser, setCurrentUser] = useState('guest');
-
-    const [modal, setModal] = useState(true)
 
     const [gameMatrix, setGameMatrix] = useState(matrix);
 
@@ -47,19 +42,6 @@ export default function Board() {
                     ))
                 }
             </table>
-            {modal
-                ?
-                <Modal setIsOpen={setModal}>
-                    <div className='welcome-container'>
-                        <div>
-                            <h6>congratulations </h6>
-                            <h1 style={{ fontWeight: '100' }}><img src={redCoin} alt='redCoin' /></h1>
-                        </div>
-                    </div>
-                </Modal>
-                :
-                ''
-            }
         </div >
     )
 }
