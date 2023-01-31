@@ -14,7 +14,6 @@ export default function Modal({ children, setIsOpen }) {
     zIndex: "4",
     padding: "20px",
   };
-  
   const ModalContainerStyle = {
     backgroundColor: "rgba(0,0,0,0.44)",
     position: "absolute",
