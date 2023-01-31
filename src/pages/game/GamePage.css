@@ -8,12 +8,38 @@
 }
 
 .gamePage-header {
-    /* background-color: rgb(255, 0, 0); */
     height: 18%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+}
+
+#player_1 {
+    background-image: url('../../attachments/boardTools/Coin-red.svg');
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+}
+
+#player_2 {
+    background-image: url('../../attachments/boardTools/Coin-yellow.svg');
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
 }
 
 .gamePage-body {
@@ -31,12 +57,13 @@
     justify-content: center;
 }
 
-.modal-buttons-container{
+.modal-buttons-container {
     display: flex;
-    flex-direction: column;  
-    margin-top: 10px; 
+    flex-direction: column;
+    margin-top: 10px;
 }
-.modal-buttons-container button{
+
+.modal-buttons-container button {
     margin: 9px;
     width: 123px;
     font-weight: 100;
@@ -45,19 +72,20 @@
     border-radius: 8px;
 }
 
-.modal-container{
+.modal-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.modal-buttons-container{
+.modal-buttons-container {
     display: flex;
-    flex-direction: column;  
-    margin-top: 10px; 
+    flex-direction: column;
+    margin-top: 10px;
 }
-.modal-buttons-container button{
+
+.modal-buttons-container button {
     margin: 9px;
     width: 123px;
     font-weight: 100;
@@ -66,13 +94,13 @@
     border-radius: 8px;
 }
 
-.modal-container{
+.modal-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.modal-headers-container{
+.modal-headers-container {
     width: 75%;
     display: flex;
     flex-direction: column;
@@ -82,8 +110,6 @@
 
 }
 
-.modal-headers-container h1{
+.modal-headers-container h1 {
     margin: 0px;
 }
-
-
