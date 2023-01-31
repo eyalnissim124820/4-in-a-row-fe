@@ -3,15 +3,20 @@ import Board from "../../components/board/Board";
 import "./GamePage.css";
 import Modal from "../../components/modal/Modal";
 import redCoin from "../../attachments/boardTools/Coin-red.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function GamePage() {
-  const [modal, setModal] = useState(true);
+
+  const [modal, setModal] = useState(false);
+  const navigate = useNavigate();
+
 
   return (
     <div className="gamePage-page">
       <div className="gamePage-header"></div>
       <div className="gamePage-body">
-        <Board />
+        <Board setModal={setModal} />
+
       </div>
       <div className="gamePage-footer">
         {modal ? (
@@ -25,7 +30,8 @@ export default function GamePage() {
               </div>
               <div className="modal-buttons-container">
                 <button>Play again</button>
-                <button>Score</button>
+                <button onClick={() => navigate('/scoresPage')}>Score</button>
+
               </div>
             </div>
           </Modal>

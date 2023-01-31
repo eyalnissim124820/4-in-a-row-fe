@@ -10,7 +10,7 @@ const matrix = [
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0]]
 
-export default function Board() {
+export default function Board({ setModal }) {
 
     const [currentUser, setCurrentUser] = useState('host');
 
@@ -26,7 +26,7 @@ export default function Board() {
                     matrix[i][j + 2] === playerNumber &&
                     matrix[i][j + 3] === playerNumber
                 ) {
-                    return `win`;
+                    return true;
                 }
                 if (
                     i < 4 &&
@@ -35,7 +35,7 @@ export default function Board() {
                     matrix[i + 2][j] === playerNumber &&
                     matrix[i + 3][j] === playerNumber
                 ) {
-                    return `win`;
+                    return true;
                 }
                 if (
                     i > 2 &&
@@ -45,7 +45,7 @@ export default function Board() {
                     matrix[i - 2][j + 2] === playerNumber &&
                     matrix[i - 3][j + 3] === playerNumber
                 ) {
-                    return `win`;
+                    return true;
                 }
                 if (
                     i < 4 &&
@@ -55,11 +55,11 @@ export default function Board() {
                     matrix[i + 2][j + 2] === playerNumber &&
                     matrix[i + 3][j + 3] === playerNumber
                 ) {
-                    return `win`;
+                    return true;
                 }
             }
         }
-        return `not win`;
+        return false;
     };
 
     async function handleClick() {
@@ -70,7 +70,9 @@ export default function Board() {
             playerNumber = 2;
         }
         const res = await checkWin(gameMatrix, playerNumber)
-        console.log(res);
+        if (res){
+            setModal(true)
+        }
     }
 
     return (
@@ -86,6 +88,7 @@ export default function Board() {
                                         if (newMatrix[j][slot] === 0) {
                                             newMatrix[j][slot] = currentUser === 'host' ? 1 : 2;
                                             setGameMatrix(newMatrix)
+                                            handleClick()
                                             return;
                                         }
                                     }
@@ -96,7 +99,6 @@ export default function Board() {
                     ))
                 }
             </table>
-            <button onClick={handleClick}>Check</button>
         </div >
     )
 }
