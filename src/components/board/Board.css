@@ -1,5 +1,5 @@
 .board {
-    background-color: blue;
+    position: relative;
     width: 390px;
     height: 422px;
     display: flex;
@@ -10,14 +10,12 @@
     border-radius: 20px;
     grid-template-columns: 1fr;
     z-index: 3;
-    /* transform: rotate(270deg); */
 }
 
 .board table {
     table-layout: fixed;
     width: 100%;
     height: 100%;
-    z-index: 0;
 }
 
 .board table tr td {
@@ -35,14 +33,16 @@
 }
 
 #coin-2 {
+    position: relative;
     background-image: url('../../attachments//boardTools/Coin-yellow.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 66%;
-    animation: dropCoin 0.3s linear 1;
+    animation: dropCoin 0.5s linear 1;
 }
 
 #coin-0 {
+    position: relative;
     background-image: url('../../attachments//boardTools/Coin-white.svg');
     background-position: center;
     background-repeat: no-repeat;
@@ -51,12 +51,21 @@
 
 @keyframes dropCoin {
     0% {
-        transform: translateY(-300px);
+        transform: translateY(-500px);
     }
-
-    100% {
+    65%{
+        transform: translateY(0px);
+    }
+    75% {
+        transform: translateY(-40px);
+    }
+    90% {
+        transform: translateY(0px);
+    }
+    95% {
+        transform: translateY(-20px);
+    }
+    100%{
         transform: translateY(0px);
     }
 }
-
-
