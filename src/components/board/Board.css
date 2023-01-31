@@ -1,0 +1,59 @@
+.board {
+    background-color: blue;
+    width: 390px;
+    height: 422px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(199.2deg, #A5C1EE -11.99%, #0046CF 104.3%);
+    border-radius: 20px;
+    grid-template-columns: 1fr;
+    z-index: 3;
+    /* transform: rotate(270deg); */
+}
+
+.board table {
+    table-layout: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.board table tr td {
+    background-image: url('../../attachments//boardTools/Coin-white.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#coin-1 {
+    background-image: url('../../attachments//boardTools/Coin-red.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 66%;
+}
+
+#coin-2 {
+    background-image: url('../../attachments//boardTools/Coin-yellow.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 66%;
+    animation: dropCoin 0.3s linear 1;
+}
+
+#coin-0 {
+    background-image: url('../../attachments//boardTools/Coin-white.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 66%;
+}
+
+@keyframes dropCoin {
+    0% {
+        transform: translateY(-300px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
