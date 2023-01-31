@@ -42,9 +42,11 @@ const AppContext = ({ children }) => {
     }
   };
 
-  const createMatch = (userId) =>{
+  const createMatch = async (userId) =>{
     try{
-      const roomId = axios.post('http://localhost:8080', userId)
+      const response = await  axios.post('http://localhost:8080/game', userId)
+      const roomId = response.data.id
+      console.log(roomId)
       return roomId
     }catch(error){
       console.log(error)
