@@ -1,0 +1,27 @@
+#enterPin {
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+    background-color: #3475DA;
+    color: white;
+    border-radius: 10px;
+    margin-top: 8px;
+    width: 130px;
+    height: 39px;
+    border: none;
+}
+
+#enterPin:focus {
+    border: none;
+    color: white;
+    outline: #FFFFFF;
+}
+
+.loadingCoins button{
+    width: 200px;
+    border-radius: 12px;
+    color: #FFFFFF;
+    padding: 7px 10px;
+    cursor: pointer;
+}

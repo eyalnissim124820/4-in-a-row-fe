@@ -1,9 +1,11 @@
+import logoutImg  from '../../../attachments/favicon_io (4)/logout-icon.svg'
+
 const LogoutButton = ({clickHandler})=>{
   
   
   return(
     <div className="">
-      <button onClick={clickHandler}>Log out</button>
+      <img onClick={clickHandler} src={logoutImg} alt="door-icon"/> 
     </div>
   )
 }

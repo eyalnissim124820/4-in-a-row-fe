@@ -1,14 +1,34 @@
 import './App.css';
-import LoginForm from './components/forms/login/LoginForm';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import useAuthContext from './hooks/useAuthContext';
+import LoginPage from './pages/loginPage/LoginPage';
+import SignUpPage from './pages/signUpPage/SignUpPage';
+import HomePage from './pages/home/HomePage';
+import GamePage from './pages/game/GamePage';
+import ScoresPage from './pages/scores/ScoresPage';
+import LandingPage from './pages/landingPage/LandingPage';
+import CreateGamePage from './pages/createGame/CreateGamePage';
+import JoinGamePage from './pages/joinGame/JoinGamePage';
 
 function App() {
 
   const { currentUser } = useAuthContext()
 
   return (
-    // <div>hello</div>
-    <LoginForm />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<LandingPage />} />
+        <Route path='/loginPage' element={<LoginPage />} />
+        <Route path='/signupPage' element={<SignUpPage />} />
+        <Route path='/homePage' element={<HomePage />} />
+        <Route path='/CreateGamePage' element={<CreateGamePage />} />
+        <Route path='/JoinGamePage' element={<JoinGamePage />} />
+        <Route path='/gamePage' element={<GamePage />} />
+        <Route path='/scoresPage' element={<ScoresPage />} />
+        <Route path='*' element={<LandingPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

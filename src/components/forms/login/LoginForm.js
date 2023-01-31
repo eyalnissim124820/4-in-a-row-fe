@@ -1,11 +1,15 @@
 import { useState } from "react"
 import LoginButton from '../../buttons/loginBtn/LoginButton'
 import './LoginForm.css'
+import useAuthContext from '../../../hooks/useAuthContext'
+import { useNavigate } from "react-router-dom"
 
 const LoginForm = () => {
+  const navigate = useNavigate()
+  const {login,currentUser,handleCurrentUser} = useAuthContext()
   const [loginInfo, setLoginInfo] = useState({
-    email: null,
-    password: null
+    email: '',
+    password: ''
   })
   // is set from inputs
 
@@ -13,9 +17,15 @@ const LoginForm = () => {
     setLoginInfo({ ...loginInfo, [e.target.id]: e.target.value })
   }
 
-  const handleLoginClick = (e) => {
+  const handleLoginClick = async(e) => {
     e.preventDefault();
-    //login function on loginInfo
+    const res = await login(loginInfo)
+    if(res){
+      console.log(res.data)
+      handleCurrentUser(res.data)
+      localStorage.setItem('currentUser', JSON.stringify(res.data))
+      navigate('/homePage');
+    }
     console.log(loginInfo);
   }
 
@@ -31,6 +41,7 @@ const LoginForm = () => {
         <input id="password" value={loginInfo.password} onChange={handleChange} type='password' name="password" />
       </div>
       <LoginButton clickHandler={handleLoginClick} />
+      <small onClick={()=>{navigate('/signupPage')}}>Does not have an account? sign up here</small>
     </form>
   )
 }
