@@ -8,7 +8,7 @@ const SignupForm = () => {
   const navigate = useNavigate()
   const {signup} = useAuthContext()
   const [signUpInfo, setSignUpInfo] = useState({
-    nick_name: '',
+    nickname: '',
     email: '',
     password: '',
     repassword: ''
