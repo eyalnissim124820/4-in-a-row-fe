@@ -4,6 +4,8 @@ import "./ScoresPage.css";
 
 export default function ScoresList({ list }) {
   return (
-    <>{list && list.map((item) => <ScoresItem key={item.id} {...item} />)}</>
+    <ul>
+      {list && list.map((item) => <ScoresItem key={item.id} {...item} />)}
+    </ul>
   );
 }
