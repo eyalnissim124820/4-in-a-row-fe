@@ -16,19 +16,20 @@ const HomePage = () => {
   };
   const handleCreateButtonClick = async() => {
     console.log("creating game ...");
-    // const tableInfo ={
-    //   u_id: currentUser.id
-    // }
-    // const roomId = await createMatch(tableInfo)
-    // if(roomId){
-    //   navigate(`/CreateGamePage/?userId=${currentUser.id}&&roomId=${tableInfo}`);
-    // }
+    const tableInfo ={
+      u_id: currentUser.id
+    }
+    const roomId = await createMatch(tableInfo)
+    if(roomId){
+      console.log(roomId)
+      navigate(`/CreateGamePage/?userId=${currentUser.id}&&roomId=${tableInfo}`);
+    }
     
-    navigate(`/CreateGamePage/?userId=${currentUser?.id}&&roomId=${1234}`);
+    navigate(`/CreateGamePage/?userId=${currentUser?.id}&&roomId=${roomId}`);
   };
   const handleJoinButtonClick = () => {
     console.log("joining game ...");
-    navigate('/JoinGamePage')
+    navigate(`/JoinGamePage?userId=${currentUser.id}`)
   };
   return (
     <div className="homePage-page">
