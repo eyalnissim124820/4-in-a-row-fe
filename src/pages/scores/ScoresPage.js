@@ -10,6 +10,8 @@ export default function ScoresPage() {
     { id: 3, nickname: "gilad", score: "win" },
     { id: 4, nickname: "gilad", score: "win" },
     { id: 5, nickname: "gilad", score: "win" },
+    { id: 6, nickname: "gilad", score: "win" },
+    { id: 7, nickname: "gilad", score: "win" },
   ];
   return (
     <div id="scores-page">
@@ -21,7 +23,17 @@ export default function ScoresPage() {
       </div>
       <div id="scores-game-history">
         <div id="scores-headline">Game History</div>
-        <ScoresList list={list} />
+        <div className="scoresList">
+          <ScoresList list={list} />
+          <li id="scores-item" style={{width:'40%'}}>
+            <div id="left-side">
+              <p>{}</p>
+            </div>
+            <div id="right-side">
+              <p>{}</p>
+            </div>
+          </li>
+        </div>
       </div>
 
       <div id="scores-online-score">
