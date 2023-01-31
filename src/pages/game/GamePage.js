@@ -15,7 +15,10 @@ export default function GamePage() {
 
   return (
     <div className="gamePage-page">
-      <div className="gamePage-header"></div>
+      <div className="gamePage-header">
+        <div id="player_1">Name1</div>
+        <div id="player_2">Name2</div>
+      </div>
       <div className="gamePage-body">
         <Board setModal={setModal} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} />
       </div>
