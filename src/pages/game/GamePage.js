@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Board from "../../components/board/Board";
 import "./GamePage.css";
 import Modal from "../../components/modal/Modal";
 import redCoin from "../../attachments/boardTools/Coin-red.svg";
 import { useNavigate } from "react-router-dom";
-
+import useAppContext from '../../hooks/useAppContext'
 export default function GamePage() {
-
+  const {matchDetails, handleMatchDetails} = useAppContext()
+  const [gameDetailsToShow, setGameDetailsToShow] = useState()
   const [modal, setModal] = useState(false);
   const [playerTurn, setPlayerTurn] = useState(false);
 
+  useEffect(()=>{
+    if(matchDetails){
+      setGameDetailsToShow(matchDetails)
+    }
+  },[matchDetails])
   const navigate = useNavigate();
-
-
+  console.log(gameDetailsToShow)
   return (
     <div className="gamePage-page">
       <div className="gamePage-header">
-        <div id="player_1">Name1</div>
-        <div id="player_2">Name2</div>
+        <div id="player_1">{gameDetailsToShow.usersOnRoom[0].userName}</div>
+        <div id="player_2">{gameDetailsToShow.usersOnRoom[1].userName}</div>
       </div>
       <div className="gamePage-body">
         <Board setModal={setModal} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} />

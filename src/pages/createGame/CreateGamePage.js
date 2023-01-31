@@ -6,9 +6,12 @@ import coin_r from "../../attachments/boardTools/Coin-red.svg";
 import useAuthContext from "../../hooks/useAuthContext";
 import { socket } from "../../libs/sockets";
 import { useNavigate } from "react-router-dom";
+import useAppContext from '../../hooks/useAppContext'
 export default function CreateGamePage() {
   const { currentUser } = useAuthContext();
   const [gameRoom, setGameRoom] = useState();
+  const {matchDetails, handleMatchDetails} = useAppContext()
+
   const navigate = useNavigate();
   useEffect(() => {
     const url = new URLSearchParams(window.location.search);
@@ -23,7 +26,7 @@ export default function CreateGamePage() {
 
   useEffect(() => {
     socket.on("usersInRoom", (data) => {
-      console.log(data)
+      handleMatchDetails(data)
       navigate(`/GamePage?rommId=${data.roomId}`);
     });
   }, []);
