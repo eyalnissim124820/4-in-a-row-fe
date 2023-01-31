@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .modal-buttons-container{
@@ -48,6 +49,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .modal-headers-container{
@@ -55,7 +57,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 53px;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .modal-headers-container h1{

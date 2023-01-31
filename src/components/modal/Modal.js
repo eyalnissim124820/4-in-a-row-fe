@@ -3,17 +3,18 @@ import React from "react";
 export default function Modal({ children, setIsOpen }) {
   const ModalStyle = {
     position: "absolute",
-    right: "10%",
-    left: "10%",
-    top: "20%",
-    bottom: "20%",
+    left: '15%',
+    top: '25%',
+    width: 'fit-content',
+    display:'flex',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "white",
     borderRadius: "20px",
     zIndex: "4",
-    margin: "0",
-    padding: "0",
-    aspectRatio: "1 /1",
+    padding: "20px",
   };
+  
   const ModalContainerStyle = {
     backgroundColor: "rgba(0,0,0,0.44)",
     position: "absolute",
