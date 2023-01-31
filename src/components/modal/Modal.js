@@ -11,7 +11,7 @@ export default function Modal({ children, setIsOpen }) {
         bottom: '20%',
         backgroundColor: 'white',
         borderRadius: '20px',
-        zIndex: '1',
+        zIndex: '4',
         margin: '0',
         padding: '0'
     }
@@ -22,7 +22,7 @@ export default function Modal({ children, setIsOpen }) {
         height: "100vh",
         top: '0',
         right: '0',
-        zIndex: '2'
+        zIndex: '3'
     }
 
     return (
