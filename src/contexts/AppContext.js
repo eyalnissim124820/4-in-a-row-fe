@@ -1,13 +1,19 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const Context = createContext();
 
 const AppContext = ({ children }) => {
+  const [matchDetails, setMatchDetails] = useState('hello') 
+
+  const handleMatchDetails =(value)=>{
+    setMatchDetails(value)
+  }
+
   //‘/scores [POST]  Add Score API
   const addMatchScore = async () => {
     try {
-      const res = axios;
+      // const res = axios;
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +66,9 @@ const AppContext = ({ children }) => {
     addMatchScore,
     getScoreHistory,
     createMatch,
-    joinMatch
+    joinMatch,
+    handleMatchDetails,
+    matchDetails
   }
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };
