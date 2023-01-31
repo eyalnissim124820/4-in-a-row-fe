@@ -1,0 +1,14 @@
+.gamePage-page {
+    background-color: aqua;
+    height: 100%;
+    width: 100%;
+}
+
+.gamePage-header{
+    background-color: blue;
+    height: 18%;
+}
+
+.gamePage-footer{
+        background-color: rgb(0, 255, 26);
+}
