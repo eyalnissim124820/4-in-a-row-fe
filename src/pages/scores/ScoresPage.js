@@ -2,28 +2,31 @@ import React, { useEffect, useState } from "react";
 import "./ScoresPage.css";
 import logo from "../../attachments/favicon_io (4)/4inARow 1.svg";
 import ScoresList from "./ScoresList";
-import useAppContext from '../../hooks/useAppContext'
+import UserScoresList from "./UserScoresList";
+import useAppContext from "../../hooks/useAppContext";
 import useAuthContext from "../../hooks/useAuthContext";
 
 export default function ScoresPage() {
-  const { getScoreHistory, getUserScoreHistory } = useAppContext()
-  const { currentUser } = useAuthContext()
+  const { getScoreHistory, getUserScoreHistory, getUsersScore } =
+    useAppContext();
+  const { currentUser } = useAuthContext();
 
-  const [userHistory, setUserHistory] = useState([])
-  const [onlineHistory, setOnlineHistory] = useState([])
-
+  const [userHistory, setUserHistory] = useState([]);
+  const [onlineHistory, setOnlineHistory] = useState([]);
+  const [usersPoints, setUsersPoints] = useState("");
 
   const onLoad = async () => {
-    const allHistory = await getScoreHistory()
-    setOnlineHistory(allHistory)
-    const lastHistory = await getUserScoreHistory(currentUser.id)
-    setUserHistory(lastHistory)
-  }
+    const allHistory = await getScoreHistory();
+    setOnlineHistory(allHistory);
+    const lastHistory = await getUserScoreHistory(currentUser.id);
+    setUserHistory(lastHistory);
+    const currentUserPoints = await getUsersScore(currentUser.id);
+    setUsersPoints(currentUserPoints);
+  };
 
   useEffect(() => {
-    onLoad()
-    console.log(onlineHistory);
-  }, [])
+    onLoad();
+  }, []);
 
   return (
     <div id="scores-page">
@@ -36,12 +39,14 @@ export default function ScoresPage() {
       <div id="scores-game-history">
         <div id="scores-headline">Game History</div>
         <div className="scoresList">
-          <ScoresList list={userHistory} />
+          <UserScoresList list={userHistory} />
           <div className="total-scores">
             <p id="totalTitle">Total Score:</p>
-            <li id="scores-item" style={{ width: '20%' }}>
-              <p>total</p>
-              <p>Points</p>
+            <li id="scores-item" style={{ width: "20%" }}>
+              <p>
+                <b>{usersPoints}</b>
+              </p>
+              <p>points</p>
             </li>
           </div>
         </div>
