@@ -4,11 +4,13 @@ import axios from "axios";
 export const Context = createContext();
 
 const AppContext = ({ children }) => {
-  const [matchDetails, setMatchDetails] = useState('hello') 
+  const [matchDetails, setMatchDetails] = useState(null) 
 
   const handleMatchDetails =(value)=>{
     setMatchDetails(value)
   }
+
+  
 
   //‘/scores [POST]  Add Score API
   const addMatchScore = async () => {

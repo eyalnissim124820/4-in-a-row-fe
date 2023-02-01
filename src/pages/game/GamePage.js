@@ -9,7 +9,7 @@ export default function GamePage() {
   const {matchDetails, handleMatchDetails} = useAppContext()
   const [gameDetailsToShow, setGameDetailsToShow] = useState()
   const [modal, setModal] = useState(false);
-  const [playerTurn, setPlayerTurn] = useState(false);
+  const [playerTurn, setPlayerTurn] = useState(true);
 
   useEffect(()=>{
     if(matchDetails){
@@ -21,11 +21,11 @@ export default function GamePage() {
   return (
     <div className="gamePage-page">
       <div className="gamePage-header">
-        <div id="player_1">{gameDetailsToShow.usersOnRoom[0].userName}</div>
-        <div id="player_2">{gameDetailsToShow.usersOnRoom[1].userName}</div>
+        <div id="player_1">{gameDetailsToShow?.usersOnRoom[0]?.userName}</div>
+        <div id="player_2">{gameDetailsToShow?.usersOnRoom[1]?.userName}</div>
       </div>
       <div className="gamePage-body">
-        <Board setModal={setModal} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} />
+        <Board setModal={setModal} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} match={gameDetailsToShow} />
       </div>
       <div className="gamePage-footer">
         {modal ? (
