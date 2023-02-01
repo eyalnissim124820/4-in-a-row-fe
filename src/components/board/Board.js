@@ -1,21 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Board.css'
+import { socket } from '../../libs/sockets'
 
-const matrix = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0]]
 
-export default function Board({ setModal, setPlayerTurn, playerTurn , match}) {
 
+export default function Board({ setModal, setPlayerTurn, playerTurn , match  , gameMatrix , setGameMatrix}) {
     const [currentUser, setCurrentUser] = useState('host');
-
-    const [gameMatrix, setGameMatrix] = useState(matrix);
-
     function checkWin(matrix, playerNumber) {
         for (let i = 0; i < matrix.length; i++) {
             for (let j = 0; j < 6; j++) {
@@ -61,7 +51,6 @@ export default function Board({ setModal, setPlayerTurn, playerTurn , match}) {
         }
         return false;
     };
-
     async function handleClick() {
         let playerNumber = 0;
         if (currentUser === 'host') {
@@ -69,6 +58,7 @@ export default function Board({ setModal, setPlayerTurn, playerTurn , match}) {
         } else {
             playerNumber = 2;
         }
+
         const res = await checkWin(gameMatrix, playerNumber)
         if (res) {
             setModal(true)
@@ -82,14 +72,15 @@ export default function Board({ setModal, setPlayerTurn, playerTurn , match}) {
                     gameMatrix[0]?.map((column, i) => (
                         <tr key={i}>
                             {gameMatrix?.map((row, j) => (
-                                <td key={`${i},${j}`} id={`coin-${matrix[j][i]}`} onClick={() => {
+                                <td key={`${i},${j}`} id={`coin-${gameMatrix[j][i]}`} onClick={() => {
                                     const newMatrix = [...gameMatrix];
-                                    for (let slot = matrix.length; slot >= 0; slot--) {
+                                    for (let slot = gameMatrix.length; slot >= 0; slot--) {
                                         if (newMatrix[j][slot] === 0) {
                                             newMatrix[j][slot] = currentUser === 'host' ? 1 : 2;
                                             setGameMatrix(newMatrix)
+                                            socket.emit('update', {matrix: newMatrix})
                                             handleClick()
-                                            setPlayerTurn(!playerTurn)
+                                            // setPlayerTurn(false)
                                             return;
                                         }
                                     }
