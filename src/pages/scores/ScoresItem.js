@@ -14,7 +14,7 @@ export default function ScoresItem({ id, nickname, score }) {
   }, [])
 
   return (
-    <li id="scores-item">
+    <li id="scores-item" className={`${myNickname}`}>
       <div id="left-side">
         <p>{nickname}</p>
       </div>

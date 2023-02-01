@@ -6,7 +6,7 @@ import ScoresList from "./ScoresList";
 export default function ScoresPage() {
   const list = [
     { id: 1, nickname: "gilad", score: "Win" },
-    { id: 2, nickname: "yoni", score: "Lose" },
+    { id: 2, nickname: "gilad", score: "Lose" },
     { id: 3, nickname: "gilad", score: "Lose" },
     { id: 4, nickname: "gilad", score: "Win" },
     { id: 5, nickname: "gilad", score: "Win" },
