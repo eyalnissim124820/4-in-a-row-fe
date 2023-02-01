@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react'
 import './Board.css'
 import { socket } from '../../libs/sockets'
 import useAuthContext from '../../hooks/useAuthContext';
+import useAppContext from '../../hooks/useAppContext';
 
 
 
 export default function Board({ setModal, setPlayerTurn, playerTurn , match  , gameMatrix , setGameMatrix}) {
     const [currentPlayer, setCurrentPlayer] = useState(match?.usersOnRoom[0]);
     const{currentUser} = useAuthContext()
+    const {addToMatches} = useAppContext()
+    
+    
     function checkWin(matrix, playerNumber) {
         for (let i = 0; i < matrix.length; i++) {
             for (let j = 0; j < 6; j++) {
@@ -65,6 +69,11 @@ export default function Board({ setModal, setPlayerTurn, playerTurn , match  , g
         if (res) {
             setModal(true)
             socket.emit('endGame' , true)
+            const winner = playerNumber === 1 ? match?.usersOnRoom[0].userId : match?.usersOnRoom[1].userId
+            console.log("winner" ,winner)
+            console.log("user 1", match?.usersOnRoom[0].userId)
+            console.log("user 2", match?.usersOnRoom[1].userId);
+            addToMatches(match?.usersOnRoom[1].userId,match?.usersOnRoom[0].userId,winner)
         }
         setPlayerTurn(!playerTurn)
     }

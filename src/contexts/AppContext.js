@@ -95,12 +95,12 @@ const AppContext = ({ children }) => {
     }
   };
 
-  const addToMatches = async (u1, u2, winner) => {
+  const addToMatches = async (u1, u2, gameWinner) => {
     try {
       const newMatch = {
-        u1: u1,
-        u2: u2,
-        winner: winner,
+        u1_id: u1,
+        u2_id: u2,
+        winner: gameWinner,
       };
       const res = await axios.post("http://localhost:8080/matches", newMatch);
       console.log(res.data);
