@@ -23,7 +23,7 @@ const AppContext = ({ children }) => {
   const getScoreHistory = async () => {
     try {
       const res = await axios.get("http://localhost:8080/users/topScores");
-      console.log(`getScoreHistory`, res.data);
+      return (res.data);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +34,7 @@ const AppContext = ({ children }) => {
       const res = await axios.get(
         `http://localhost:8080/matches/history/${userId}`
       );
-      console.log(`getUserScoreHistory`, res.data);
+      return (res.data);
     } catch (error) {
       console.log(error);
     }
@@ -75,11 +75,11 @@ const AppContext = ({ children }) => {
 
   //////////// test ///////////
   useEffect(() => {
-    getScoreHistory();
-    getUserScoreHistory(5);
-    getUserLastMatchScore(5);
-    getUserWinningStreack(5);
-    getUsersScore(6);
+    // getScoreHistory();
+    // getUserScoreHistory(5);
+    // getUserLastMatchScore(5);
+    // getUserWinningStreack(5);
+    // getUsersScore(6);
   }, []);
 
   //////////////////////////
@@ -94,7 +94,7 @@ const AppContext = ({ children }) => {
       console.log(error);
     }
   };
-  const joinMatch = (userId, roomId) => {};
+  const joinMatch = (userId, roomId) => { };
 
   const values = {
     addMatchScore,
@@ -103,6 +103,7 @@ const AppContext = ({ children }) => {
     joinMatch,
     handleMatchDetails,
     matchDetails,
+    getUserScoreHistory
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };
