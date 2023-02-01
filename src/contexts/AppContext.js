@@ -23,7 +23,7 @@ const AppContext = ({ children }) => {
   const getScoreHistory = async () => {
     try {
       const res = await axios.get("http://localhost:8080/users/topScores");
-      return (res.data);
+      return res.data;
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +34,7 @@ const AppContext = ({ children }) => {
       const res = await axios.get(
         `http://localhost:8080/matches/history/${userId}`
       );
-      return (res.data);
+      return res.data;
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +67,7 @@ const AppContext = ({ children }) => {
       const res = await axios.get(
         `http://localhost:8080/users/usersScore/${userId}`
       );
-      console.log("getUsersScore", res.data.data[0].score);
+      return res.data.data[0].score;
     } catch (err) {
       console.log(err);
     }
@@ -94,7 +94,7 @@ const AppContext = ({ children }) => {
       console.log(error);
     }
   };
-  const joinMatch = (userId, roomId) => { };
+  const joinMatch = (userId, roomId) => {};
 
   const values = {
     addMatchScore,
@@ -103,7 +103,8 @@ const AppContext = ({ children }) => {
     joinMatch,
     handleMatchDetails,
     matchDetails,
-    getUserScoreHistory
+    getUserScoreHistory,
+    getUsersScore,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };
