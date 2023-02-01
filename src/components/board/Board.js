@@ -10,7 +10,7 @@ const matrix = [
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0]]
 
-export default function Board({ setModal, setPlayerTurn, playerTurn }) {
+export default function Board({ setModal, setPlayerTurn, playerTurn , match}) {
 
     const [currentUser, setCurrentUser] = useState('host');
 
