@@ -5,13 +5,13 @@ import ScoresList from "./ScoresList";
 
 export default function ScoresPage() {
   const list = [
-    { id: 1, nickname: "gilad", score: "win" },
-    { id: 2, nickname: "gilad", score: "win" },
-    { id: 3, nickname: "gilad", score: "win" },
-    { id: 4, nickname: "gilad", score: "win" },
-    { id: 5, nickname: "gilad", score: "win" },
-    { id: 6, nickname: "gilad", score: "win" },
-    { id: 7, nickname: "gilad", score: "win" },
+    { id: 1, nickname: "gilad", score: "Win" },
+    { id: 2, nickname: "yoni", score: "Lose" },
+    { id: 3, nickname: "gilad", score: "Lose" },
+    { id: 4, nickname: "gilad", score: "Win" },
+    { id: 5, nickname: "gilad", score: "Win" },
+    { id: 6, nickname: "gilad", score: "Win" },
+    { id: 7, nickname: "gilad", score: "Win" },
   ];
   return (
     <div id="scores-page">
@@ -25,14 +25,13 @@ export default function ScoresPage() {
         <div id="scores-headline">Game History</div>
         <div className="scoresList">
           <ScoresList list={list} />
-          <li id="scores-item" style={{width:'40%'}}>
-            <div id="left-side">
-              <p>{}</p>
-            </div>
-            <div id="right-side">
-              <p>{}</p>
-            </div>
-          </li>
+          <div className="total-scores">
+            <p id="totalTitle">Total Score:</p>
+            <li id="scores-item" style={{ width: '20%' }}>
+                <p>total</p>
+                <p>Points</p>
+            </li>
+          </div>
         </div>
       </div>
 
