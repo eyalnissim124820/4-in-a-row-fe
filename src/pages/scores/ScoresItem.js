@@ -3,7 +3,7 @@ import "./ScoresPage.css";
 import useAuthContext from '../../hooks/useAuthContext'
 
 
-export default function ScoresItem({ id, nickname, score }) {
+export default function ScoresItem({ i, id, nickname, score }) {
   const { currentUser } = useAuthContext();
   const [myNickname, setMynickname] = useState(false)
 
@@ -16,11 +16,11 @@ export default function ScoresItem({ id, nickname, score }) {
   return (
     <li id="scores-item" className={`${myNickname}`}>
       <div id="left-side">
-        <p>{nickname}</p>
+        <p>#{i + 1} {nickname}</p>
       </div>
       <div id="right-side">
         {myNickname ? <p>(You)</p> : ''}
-        <p>{score}:{` ${score === 'Win' ? 2 : 0}`}</p>
+        <p>{score} points</p>
       </div>
     </li>
   );

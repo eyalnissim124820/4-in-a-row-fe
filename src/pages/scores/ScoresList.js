@@ -5,7 +5,7 @@ import "./ScoresPage.css";
 export default function ScoresList({ list }) {
   return (
     <ul>
-      {list && list.map((item) => <ScoresItem key={item.id} {...item} />)}
+      {list[0] ? list.map((item,i) => <ScoresItem key={item.id} {...item} i={i} />) : ''}
     </ul>
   );
 }

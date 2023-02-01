@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ScoresPage.css";
 import logo from "../../attachments/favicon_io (4)/4inARow 1.svg";
 import ScoresList from "./ScoresList";
+import useAppContext from '../../hooks/useAppContext'
+import useAuthContext from "../../hooks/useAuthContext";
 
 export default function ScoresPage() {
-  const list = [
-    { id: 1, nickname: "gilad", score: "Win" },
-    { id: 2, nickname: "gilad", score: "Lose" },
-    { id: 3, nickname: "gilad", score: "Lose" },
-    { id: 4, nickname: "gilad", score: "Win" },
-    { id: 5, nickname: "gilad", score: "Win" },
-    { id: 6, nickname: "gilad", score: "Win" },
-    { id: 7, nickname: "gilad", score: "Win" },
-  ];
+  const { getScoreHistory, getUserScoreHistory } = useAppContext()
+  const { currentUser } = useAuthContext()
+
+  const [userHistory, setUserHistory] = useState([])
+  const [onlineHistory, setOnlineHistory] = useState([])
+
+
+  const onLoad = async () => {
+    const allHistory = await getScoreHistory()
+    setOnlineHistory(allHistory)
+    const lastHistory = await getUserScoreHistory(currentUser.id)
+    setUserHistory(lastHistory)
+  }
+
+  useEffect(() => {
+    onLoad()
+    console.log(onlineHistory);
+  }, [])
+
   return (
     <div id="scores-page">
       <div>
@@ -24,12 +36,12 @@ export default function ScoresPage() {
       <div id="scores-game-history">
         <div id="scores-headline">Game History</div>
         <div className="scoresList">
-          <ScoresList list={list} />
+          <ScoresList list={userHistory} />
           <div className="total-scores">
             <p id="totalTitle">Total Score:</p>
             <li id="scores-item" style={{ width: '20%' }}>
-                <p>total</p>
-                <p>Points</p>
+              <p>total</p>
+              <p>Points</p>
             </li>
           </div>
         </div>
@@ -37,7 +49,7 @@ export default function ScoresPage() {
 
       <div id="scores-online-score">
         <p id="scores-headline">Online Scores</p>
-        <ScoresList list={list} />
+        <ScoresList list={onlineHistory} />
       </div>
     </div>
   );
