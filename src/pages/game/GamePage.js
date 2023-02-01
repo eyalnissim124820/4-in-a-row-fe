@@ -5,18 +5,46 @@ import Modal from "../../components/modal/Modal";
 import redCoin from "../../attachments/boardTools/Coin-red.svg";
 import { useNavigate } from "react-router-dom";
 import useAppContext from '../../hooks/useAppContext'
+import { socket } from '../../libs/sockets'
+
 export default function GamePage() {
   const {matchDetails, handleMatchDetails} = useAppContext()
   const [gameDetailsToShow, setGameDetailsToShow] = useState()
   const [modal, setModal] = useState(false);
   const [playerTurn, setPlayerTurn] = useState(true);
+  const navigate = useNavigate();
+  const [matrix, setMatrix] = useState(
+    [
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0]]
+  )
+
+  useEffect(()=>{
+    socket.emit('startGame', {gameRoom: matchDetails.roomId})
+    socket.on('welcome', data=>{
+      console.log(data)
+    })
+  },[])
+
+    socket.on('update', (data)=>{
+      setMatrix(data.matrix)
+    })
+
+    // onclick = (newBoard)=>{
+    // setMatrix(newBoard)
+    // socket.emit('update', {matrix: newBoard})
+    // }
 
   useEffect(()=>{
     if(matchDetails){
       setGameDetailsToShow(matchDetails)
     }
   },[matchDetails])
-  const navigate = useNavigate();
   console.log(gameDetailsToShow)
   return (
     <div className="gamePage-page">
@@ -25,7 +53,7 @@ export default function GamePage() {
         <div id="player_2">{gameDetailsToShow?.usersOnRoom[1]?.userName}</div>
       </div>
       <div className="gamePage-body">
-        <Board setModal={setModal} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} match={gameDetailsToShow} />
+        <Board  playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} match={gameDetailsToShow} gameMatrix={matrix} setGameMatrix={setMatrix}/>
       </div>
       <div className="gamePage-footer">
         {modal ? (
