@@ -31,7 +31,9 @@ const AppContext = ({ children }) => {
   // ‘/scores/:id [GET] (Protected to user only) Get Logged In User’s Score history API
   const getUserScoreHistory = async (userId) => {
     try {
-      const res = await axios.get(`http://localhost:8080/matches/history/${userId}}`);
+      const res = await axios.get(
+        `http://localhost:8080/matches/history/${userId}`
+      );
       console.log(`getUserScoreHistory`, res.data);
     } catch (error) {
       console.log(error);
@@ -40,7 +42,9 @@ const AppContext = ({ children }) => {
   //‘/scores/last/:id [GET] (Protected to user only) Get user last score API
   const getUserLastMatchScore = async (userId) => {
     try {
-      const res = await axios.get(`http://localhost:8080/matches/lastScore/${userId}`);
+      const res = await axios.get(
+        `http://localhost:8080/matches/lastScore/${userId}`
+      );
       console.log(`getUserLastMatchScore`, res.data);
     } catch (error) {
       console.log(error);
@@ -49,10 +53,23 @@ const AppContext = ({ children }) => {
   //Get user highest score API ‘/scores/winningStreak/:id [GET] (Protected to user only)
   const getUserWinningStreack = async (userId) => {
     try {
-      const res = await axios.get(`http://localhost:8080/matches/longStrike/${userId}`);
+      const res = await axios.get(
+        `http://localhost:8080/matches/longStrike/${userId}`
+      );
       console.log(`getUserWinningStreack`, res.data);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const getUsersScore = async (userId) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:8080/users/usersScore/${userId}`
+      );
+      console.log("getUsersScore", res.data.data[0].score);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -62,6 +79,7 @@ const AppContext = ({ children }) => {
     getUserScoreHistory(5);
     getUserLastMatchScore(5);
     getUserWinningStreack(5);
+    getUsersScore(6);
   }, []);
 
   //////////////////////////
