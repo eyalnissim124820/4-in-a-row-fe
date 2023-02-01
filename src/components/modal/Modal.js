@@ -25,7 +25,7 @@ export default function Modal({ children, setIsOpen }) {
   };
 
   return (
-    <div onClick={() => setIsOpen(false)} style={ModalContainerStyle}>
+    <div  style={ModalContainerStyle}>
       <div
         className="modal"
         onClick={(e) => {

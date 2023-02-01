@@ -6,12 +6,13 @@ import redCoin from "../../attachments/boardTools/Coin-red.svg";
 import { useNavigate } from "react-router-dom";
 import useAppContext from '../../hooks/useAppContext'
 import { socket } from '../../libs/sockets'
-
+import useAuthContext from '../../hooks/useAuthContext'
 export default function GamePage() {
+  const{currentUser} = useAuthContext()
   const {matchDetails, handleMatchDetails} = useAppContext()
   const [gameDetailsToShow, setGameDetailsToShow] = useState()
   const [modal, setModal] = useState(false);
-  const [playerTurn, setPlayerTurn] = useState(true);
+  const [playerTurn, setPlayerTurn] = useState(false);
   const navigate = useNavigate();
   const [matrix, setMatrix] = useState(
     [
@@ -23,28 +24,43 @@ export default function GamePage() {
       [0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0]]
   )
+  useEffect(()=>{
+    if(matchDetails){
+      console.log(matchDetails)
+      setGameDetailsToShow(matchDetails)
+      // localStorage.setItem("matchDetails", JSON.stringify(matchDetails))
+    }
+  },[matchDetails])
 
   useEffect(()=>{
     socket.emit('startGame', {gameRoom: matchDetails.roomId})
-    socket.on('welcome', data=>{
+    socket.on('welcome', (data)=>{
       console.log(data)
+      console.log("match details",gameDetailsToShow)
+      console.log(currentUser?.nickname, gameDetailsToShow?.usersOnRoom[0]?.userName)
+      if(gameDetailsToShow){
+        if(currentUser?.nickname === gameDetailsToShow?.usersOnRoom[0]?.userName){
+          console.log("your turn")
+          setPlayerTurn(true)
+          console.log(playerTurn)
+        }
+      }
     })
-  },[])
+  },[gameDetailsToShow])
 
     socket.on('update', (data)=>{
+      setPlayerTurn(data.yourTurn)
       setMatrix(data.matrix)
     })
-
-    // onclick = (newBoard)=>{
-    // setMatrix(newBoard)
-    // socket.emit('update', {matrix: newBoard})
-    // }
-
-  useEffect(()=>{
-    if(matchDetails){
-      setGameDetailsToShow(matchDetails)
-    }
-  },[matchDetails])
+    useEffect(()=>{
+      console.log("is my turn?",playerTurn)
+    },[playerTurn])
+  
+    socket.on('endGame', (data)=>{
+      console.log(data)
+      setModal(data)
+    })
+  
   console.log(gameDetailsToShow)
   return (
     <div className="gamePage-page">
@@ -53,7 +69,7 @@ export default function GamePage() {
         <div id="player_2">{gameDetailsToShow?.usersOnRoom[1]?.userName}</div>
       </div>
       <div className="gamePage-body">
-        <Board  playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} match={gameDetailsToShow} gameMatrix={matrix} setGameMatrix={setMatrix}/>
+        <Board  playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} match={gameDetailsToShow} gameMatrix={matrix} setGameMatrix={setMatrix} setModal={setModal}/>
       </div>
       <div className="gamePage-footer">
         {modal ? (
