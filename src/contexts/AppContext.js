@@ -94,6 +94,21 @@ const AppContext = ({ children }) => {
       console.log(error);
     }
   };
+
+  const addToMatches = async (u1, u2, winner) => {
+    try {
+      const newMatch = {
+        u1: u1,
+        u2: u2,
+        winner: winner,
+      };
+      const res = await axios.post("http://localhost:8080/matches", newMatch);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const joinMatch = (userId, roomId) => {};
 
   const values = {
@@ -105,6 +120,7 @@ const AppContext = ({ children }) => {
     matchDetails,
     getUserScoreHistory,
     getUsersScore,
+    addToMatches,
   };
   return <Context.Provider value={values}>{children}</Context.Provider>;
 };
