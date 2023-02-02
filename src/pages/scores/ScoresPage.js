@@ -5,12 +5,14 @@ import ScoresList from "./ScoresList";
 import UserScoresList from "./UserScoresList";
 import useAppContext from "../../hooks/useAppContext";
 import useAuthContext from "../../hooks/useAuthContext";
+import BackButton from "../../components/buttons/backBtn/BackButton";
+import { useNavigate } from "react-router-dom";
 
 export default function ScoresPage() {
   const { getScoreHistory, getUserScoreHistory, getUsersScore } =
     useAppContext();
   const { currentUser } = useAuthContext();
-
+  const navigate = useNavigate()
   const [userHistory, setUserHistory] = useState([]);
   const [onlineHistory, setOnlineHistory] = useState([]);
   const [usersPoints, setUsersPoints] = useState("");
@@ -30,14 +32,22 @@ export default function ScoresPage() {
 
   return (
     <div id="scores-page">
-      <div>
-        <button id="scores-back-button"> &lt; Go Back</button>
-      </div>
+      <div className="back-btn-container">
+          <button
+            id="scores-back-button"
+            onClick={() => {
+              navigate('/homePage');
+            }}
+          >
+            {" "}
+            &lt; Go back
+          </button>
+        </div>
       <div id="scores-upper-page">
         <img id="scores-logo" src={logo} alt="logo"></img>
       </div>
       <div id="scores-game-history">
-        <div id="scores-headline">Game History</div>
+        <div id="scores-headline">Your Games History</div>
         <div className="scoresList">
           <UserScoresList list={userHistory} />
           <div className="total-scores">

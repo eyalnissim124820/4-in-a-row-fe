@@ -10,7 +10,8 @@ import ScoresPage from './pages/scores/ScoresPage';
 import LandingPage from './pages/landingPage/LandingPage';
 import CreateGamePage from './pages/createGame/CreateGamePage';
 import JoinGamePage from './pages/joinGame/JoinGamePage';
-
+import BackButton from './components/buttons/backBtn/BackButton';
+import PrivateRoutes from './components/routes/PrivateRoutes';
 function App() {
 
   const { currentUser } = useAuthContext()
@@ -21,11 +22,11 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/loginPage' element={<LoginPage />} />
         <Route path='/signupPage' element={<SignUpPage />} />
-        <Route path='/homePage' element={<HomePage />} />
-        <Route path='/CreateGamePage' element={<CreateGamePage />} />
-        <Route path='/JoinGamePage' element={<JoinGamePage />} />
-        <Route path='/gamePage' element={<GamePage />} />
-        <Route path='/scoresPage' element={<ScoresPage />} />
+        <Route path='/homePage' element={<PrivateRoutes><HomePage /></PrivateRoutes>} />
+        <Route path='/CreateGamePage' element={<PrivateRoutes><CreateGamePage /></PrivateRoutes>} />
+        <Route path='/JoinGamePage' element={<PrivateRoutes><JoinGamePage /></PrivateRoutes>} />
+        <Route path='/gamePage' element={<PrivateRoutes><GamePage /></PrivateRoutes>} />
+        <Route path='/scoresPage' element={<PrivateRoutes><ScoresPage/></PrivateRoutes>} />
         <Route path='*' element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
