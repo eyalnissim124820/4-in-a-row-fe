@@ -7,15 +7,21 @@ import { useNavigate } from "react-router-dom";
 import useAppContext from '../../hooks/useAppContext'
 import { socket } from '../../libs/sockets'
 import useAuthContext from '../../hooks/useAuthContext'
+import LeaveGameButton from "../../components/buttons/leaveGameBtn/LeaveGameButton";
 export default function GamePage() {
   const{currentUser} = useAuthContext()
   const {matchDetails, handleMatchDetails} = useAppContext()
-  const [gameDetailsToShow, setGameDetailsToShow] = useState()
+  const [gameDetailsToShow, setGameDetailsToShow] = useState(()=>{
+    return JSON.parse(localStorage.getItem('matchDetails') || null)
+  })
   const [modal, setModal] = useState(false);
-  const [playerTurn, setPlayerTurn] = useState(false);
+  const [winner, setWinner] = useState(false)
+  const [playerTurn, setPlayerTurn] = useState(()=>{
+    return JSON.parse(localStorage.getItem('turn')) ||false});
   const navigate = useNavigate();
-  const [matrix, setMatrix] = useState(
-    [
+  const [matrix, setMatrix] = useState(()=>{
+    return JSON.parse(localStorage.getItem('board')) || 
+      [
       [0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0],
@@ -23,21 +29,21 @@ export default function GamePage() {
       [0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0]]
+  }
+    
   )
   useEffect(()=>{
     if(matchDetails){
       console.log(matchDetails)
       setGameDetailsToShow(matchDetails)
-      // localStorage.setItem("matchDetails", JSON.stringify(matchDetails))
+      localStorage.setItem("matchDetails", JSON.stringify(matchDetails))
     }
   },[matchDetails])
 
   useEffect(()=>{
-    socket.emit('startGame', {gameRoom: matchDetails.roomId})
+    socket.emit('startGame', {gameRoom: matchDetails?.roomId})
     socket.on('welcome', (data)=>{
-      console.log(data)
-      console.log("match details",gameDetailsToShow)
-      console.log(currentUser?.nickname, gameDetailsToShow?.usersOnRoom[0]?.userName)
+      console.log("matchDetails",gameDetailsToShow)
       if(gameDetailsToShow){
         if(currentUser?.nickname === gameDetailsToShow?.usersOnRoom[0]?.userName){
           console.log("your turn")
@@ -50,7 +56,11 @@ export default function GamePage() {
 
     socket.on('update', (data)=>{
       setPlayerTurn(data.yourTurn)
+      localStorage.setItem('turn', JSON.stringify(data.yourTurn))
+
       setMatrix(data.matrix)
+      localStorage.setItem("board",JSON.stringify(data.matrix))
+
     })
     useEffect(()=>{
       console.log("is my turn?",playerTurn)
@@ -60,30 +70,55 @@ export default function GamePage() {
       console.log(data)
       setModal(data)
     })
-  
+    socket.on('player-left-game', (data)=>{
+      navigate('/homePage')
+      alert(data)
+    })
+  const handleLeaveClick = ()=>{
+    navigate('/homePage');
+              localStorage.removeItem('matchDetails')
+              localStorage.removeItem('board')
+              localStorage.removeItem('turn')
+              socket.emit('player-left-game', "Your Oponent left the Game")
+  }
   console.log(gameDetailsToShow)
   return (
     <div className="gamePage-page">
+      <LeaveGameButton clickHandler={handleLeaveClick}/>
       <div className="gamePage-header">
         <div id="player_1">{gameDetailsToShow?.usersOnRoom[0]?.userName}</div>
         <div id="player_2">{gameDetailsToShow?.usersOnRoom[1]?.userName}</div>
       </div>
       <div className="gamePage-body">
-        <Board  playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} match={gameDetailsToShow} gameMatrix={matrix} setGameMatrix={setMatrix} setModal={setModal}/>
+        <Board  setWinner={setWinner} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} match={gameDetailsToShow} gameMatrix={matrix} setGameMatrix={setMatrix} setModal={setModal}/>
       </div>
       <div className="gamePage-footer">
         {modal ? (
           <Modal setIsOpen={setModal}>
             <div className="modal-container">
               <div className="modal-headers-container">
-                <h1 style={{ fontWeight: "500" }}>congratulations </h1>
-                <h1 style={{ fontWeight: "200" }}>
-                  Y<img style={{ height: "18px" }} src={redCoin} alt="redCoin" />u Won!
+                <h1 style={{ fontWeight: "500" }}>Congratulations </h1>
+                {winner ? (
+
+                  <h1 style={{ fontWeight: "200" }}>
+                  Y<img style={{ height: "18px" }} src={redCoin} alt="redCoin" />u Win!
                 </h1>
+                  ):(
+                    <h1 style={{ fontWeight: "200" }}>
+                  Y<img style={{ height: "18px" }} src={redCoin} alt="redCoin" />u Lose!
+                </h1>
+                  )}
               </div>
               <div className="modal-buttons-container">
-                <button>Play again</button>
-                <button onClick={() => navigate('/scoresPage')}>Score</button>
+                {/* <button>Play again</button> */}
+                <button onClick={() => {
+                  localStorage.removeItem('matchDetails')
+                  localStorage.removeItem('board')
+                  localStorage.removeItem('turn')
+                  navigate('/scoresPage')}
+                  
+                }
+                >Score</button>
 
               </div>
             </div>

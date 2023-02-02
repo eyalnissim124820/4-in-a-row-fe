@@ -11,7 +11,7 @@ export default function UserScoresItem({ winner, u1Name, u2Name }) {
       // className={`${myNickname}`}
     >
       <div id="left-side">
-        <p>{currentUser.nickname === u1Name ? u2Name : u1Name}</p>
+        <p>vs {currentUser.nickname === u1Name ? u2Name : u1Name}</p>
       </div>
       <div id="right-side">
         <p>

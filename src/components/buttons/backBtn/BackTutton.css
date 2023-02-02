@@ -1,0 +1,12 @@
+#scores-back-button {
+  background-color: white;
+  color: rgba(63, 63, 63, 1);
+  font-weight: 700;
+  margin-top: 20px;
+  margin-left: 25px;
+}
+.back-btn-container{
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}

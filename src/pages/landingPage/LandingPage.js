@@ -19,8 +19,8 @@ export default function LandingPage() {
                 </div>
             </div>
             <div className='landingPage-footer'>
-                <button className='landingPage-buttons'>Play as Guest</button>
-                <button className='landingPage-buttons' onClick={toLogin}>Multiplayer</button>
+                {/* <button className='landingPage-buttons'>Play as Guest</button> */}
+                <button className='landingPage-buttons' onClick={toLogin}>Play with a Friend!</button>
             </div>
         </div>
     )

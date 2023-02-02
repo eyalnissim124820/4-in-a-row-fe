@@ -6,7 +6,7 @@ import useAppContext from '../../hooks/useAppContext';
 
 
 
-export default function Board({ setModal, setPlayerTurn, playerTurn , match  , gameMatrix , setGameMatrix}) {
+export default function Board({ setWinner, setModal, setPlayerTurn, playerTurn , match  , gameMatrix , setGameMatrix}) {
     const [currentPlayer, setCurrentPlayer] = useState(match?.usersOnRoom[0]);
     const{currentUser} = useAuthContext()
     const {addToMatches} = useAppContext()
@@ -74,8 +74,10 @@ export default function Board({ setModal, setPlayerTurn, playerTurn , match  , g
             console.log("user 1", match?.usersOnRoom[0].userId)
             console.log("user 2", match?.usersOnRoom[1].userId);
             addToMatches(match?.usersOnRoom[1].userId,match?.usersOnRoom[0].userId,winner)
+            setWinner(true)
         }
         setPlayerTurn(!playerTurn)
+        localStorage.setItem('turn', JSON.stringify(!playerTurn))
     }
 
     return (
@@ -92,6 +94,7 @@ export default function Board({ setModal, setPlayerTurn, playerTurn , match  , g
                                             newMatrix[j][slot] = currentUser.id === match.usersOnRoom[0].userId ? 1 : 2;
                                             socket.emit('update', {matrix: newMatrix , yourTurn: true})
                                             setGameMatrix(newMatrix)
+                                            localStorage.setItem("board",JSON.stringify(newMatrix))
                                             handleClick()
                                             return;
                                         }

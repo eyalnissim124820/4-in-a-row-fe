@@ -39,7 +39,7 @@ const AuthContext = ({ children }) => {
   const logout = ()=>{
     try{
       handleCurrentUser(null);
-      localStorage.clear('currentUser')
+      localStorage.clear()
       return {logout: true }
     }catch(error){
       console.log(error)

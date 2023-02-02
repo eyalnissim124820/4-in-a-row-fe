@@ -5,6 +5,7 @@ import useAuthContext from '../../hooks/useAuthContext'
 import { socket } from '../../libs/sockets'
 import { useNavigate } from 'react-router-dom'
 import useAppContext from '../../hooks/useAppContext'
+import BackButton from '../../components/buttons/backBtn/BackButton'
 export default function JoinGamePage() {
   const navigate = useNavigate()
   const [gameRoom, setGameRoom] = useState('');
@@ -27,6 +28,7 @@ export default function JoinGamePage() {
 
   return (
     <div className='createGamePage'>
+      <BackButton/>
       <div className='gameCode-container'>
         <img id='smallLogo' src={logo} alt='logo' />
         <h6>Enter Game Pin</h6>
