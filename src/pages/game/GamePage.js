@@ -97,16 +97,21 @@ export default function GamePage() {
           <Modal setIsOpen={setModal}>
             <div className="modal-container">
               <div className="modal-headers-container">
-                <h1 style={{ fontWeight: "500" }}>Congratulations </h1>
+                
                 {winner ? (
-
+                  <>
+                  <h1 style={{ fontWeight: "500" }}>Congratulations </h1>
                   <h1 style={{ fontWeight: "200" }}>
                   Y<img style={{ height: "18px" }} src={redCoin} alt="redCoin" />u Win!
                 </h1>
+                  </>
                   ):(
+                    <>
+                    <h1 style={{ fontWeight: "500" }}>Unfortunately </h1>
                     <h1 style={{ fontWeight: "200" }}>
                   Y<img style={{ height: "18px" }} src={redCoin} alt="redCoin" />u Lose!
                 </h1>
+                    </>
                   )}
               </div>
               <div className="modal-buttons-container">

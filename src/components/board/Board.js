@@ -73,7 +73,7 @@ export default function Board({ setWinner, setModal, setPlayerTurn, playerTurn ,
             console.log("winner" ,winner)
             console.log("user 1", match?.usersOnRoom[0].userId)
             console.log("user 2", match?.usersOnRoom[1].userId);
-            addToMatches(match?.usersOnRoom[1].userId,match?.usersOnRoom[0].userId,winner)
+            addToMatches(match?.usersOnRoom[0].userId,match?.usersOnRoom[1].userId,winner)
             setWinner(true)
         }
         setPlayerTurn(!playerTurn)
